@@ -6,7 +6,7 @@
 // Description:    
 ////////////////////////////////////////////////////////////////////////////
 `timescale 1ns / 1ps
-module HA(
+module half_adder(
     input a,
     input b,
     output sum,
