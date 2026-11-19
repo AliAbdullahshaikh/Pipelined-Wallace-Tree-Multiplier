@@ -17,11 +17,24 @@ A Wallace Tree Multiplier reduces partial products in parallel using Carry-Save 
 
 ### Theoretical Reduction (Partial Products)
 The diagram below illustrates the 16 partial products (\(P_{00}\) to \(P_{33}\)) and the 3-stage reduction process to compute the final 8-bit product.
-![Partial Products Matrix](docs/partial_products.png)
 
-### Structural Hardware Architecture
-The hardware is composed of structural Half Adders (HA) and Full Adders (FA). Pipeline registers are inserted after each reduction stage to isolate the logic and shorten the critical path.
-![Structural Block Diagram](docs/architecture_diagram.png)
+<p align="center">
+  <img src="docs/partial_products.png" alt="Partial Products Matrix" width="650" />
+</p>
+
+### Logical Hardware Architecture (Baseline)
+The baseline hardware consists of structural Half Adders (HA) and Full Adders (FA) arranged in three reduction stages.
+
+<p align="center">
+  <img src="docs/architecture_diagram.png" alt="Logical Block Diagram" width="650" />
+</p>
+
+### RTL Pipeline Architecture
+The hardware is structurally divided into three distinct combinational stages separated by pipeline registers to minimize the critical path delay.
+
+<p align="center">
+  <img src="docs/pipeline_architecture.png" alt="Pipeline Architecture" width="600" />
+</p>
 
 ## Synthesis Results (Post-Place & Route)
 Both designs were synthesized and routed targeting a **Spartan-3E FPGA (xc3s500e, -4 speed grade)**. The Post-PAR timing analysis (which includes real physical wire delays) proves the architectural efficiency of the pipeline.
@@ -35,14 +48,18 @@ Both designs were synthesized and routed targeting a **Spartan-3E FPGA (xc3s500e
 
 ### ISE Timing Reports
 *(Proof of Post-PAR Timing Summaries)*
-![Pipelined Timing Report](docs/timing_pipelined.png)
-![Unpipelined Timing Report](docs/timing_unpipelined.png)
+
+| Pipelined (249.12 MHz) | Unpipelined (134.62 MHz) |
+| :---: | :---: |
+| <img src="docs/timing_pipelined.png" width="400" /> | <img src="docs/timing_unpipelined.png" width="400" /> |
 
 ## Simulation & Verification
 The designs were simulated using **EDA Playground (Icarus Verilog)**. The testbench validates the pipelined logic by feeding continuous data every clock cycle, verifying the expected 3-cycle latency and 1-result-per-cycle throughput after the pipeline fills.
 
 *(Waveform showing the staircase output sequence of valid multiplication results)*
-![Pipeline Simulation Waveform](docs/waveform_pipelined.png)
+<p align="center">
+  <img src="docs/waveform_pipelined.png" alt="Simulation Waveform" width="800" />
+</p>
 
 ## Repository Structure
 *   `/src`: Contains the Verilog source files (`half_adder.v`, `full_adder.v`, `pipelined_wallace_tree.v`, `unpipelined_wallace_tree_multiplier.v`).
