@@ -19,7 +19,7 @@ A Wallace Tree Multiplier reduces partial products in parallel using Carry-Save 
 The diagram below illustrates the 16 partial products (\(P_{00}\) to \(P_{33}\)) and the 3-stage reduction process to compute the final 8-bit product.
 
 <p align="center">
-  <img src="docs/partial_products.png" alt="Partial Products Matrix" width="650" />
+  <img src="docs/partial_products.png" alt="Partial Products Matrix" width="500" />
 </p>
 
 ### Logical Hardware Architecture (Baseline)
@@ -33,7 +33,7 @@ The baseline hardware consists of structural Half Adders (HA) and Full Adders (F
 The hardware is structurally divided into three distinct combinational stages separated by pipeline registers to minimize the critical path delay.
 
 <p align="center">
-  <img src="docs/pipeline_architecture.png" alt="Pipeline Architecture" width="600" />
+  <img src="docs/pipeline_architecture.png" alt="Pipeline Architecture" width="500" />
 </p>
 
 ## Synthesis Results (Post-Place & Route)
