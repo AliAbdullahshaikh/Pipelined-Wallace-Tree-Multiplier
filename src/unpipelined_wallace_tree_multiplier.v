@@ -31,19 +31,19 @@ module unpipelined_wallace_tree_multiplier(
 );
 
 	// ADD THESE REGISTERS
-    	reg [3:0] a_reg, b_reg;
+    reg [3:0] a_reg, b_reg;
 	always @(posedge clk) begin
-        	a_reg <= a; 
-        	b_reg <= b;
-    	end	
+       	a_reg <= a; 
+       	b_reg <= b;
+    end	
 
 	reg [3:0] P[3:0];
 	wire [11:0] s;
 	wire [11:0] c;	
 	integer i, j;
-    	wire [7:0] result_comb; // Internal wire for the combinational result
+    wire [7:0] result_comb; // Internal wire for the combinational result
 	 
-	 always @(*) begin
+	always @(*) begin
 		for (i=0; i<4; i=i+1) begin
 			for (j=0; j<4; j=j+1) begin
 				P[i][j] = a_reg[i] & b_reg[j]; 
