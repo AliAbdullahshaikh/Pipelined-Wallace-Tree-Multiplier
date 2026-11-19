@@ -6,7 +6,7 @@
 // Description:    
 ////////////////////////////////////////////////////////////////////////////
 `timescale 1ns / 1ps
-module FA(
+module full_adder(
     input A,
     input B,
     input Cin,
