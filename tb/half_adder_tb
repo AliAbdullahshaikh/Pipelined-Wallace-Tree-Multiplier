@@ -1,0 +1,40 @@
+`timescale 1ns / 1ps
+module half_adder_tb;
+
+	// Inputs
+	reg a;
+	reg b;
+
+	// Outputs
+	wire sum;
+	wire cout;
+
+	// Instantiate the Unit Under Test (UUT)
+	HA uut (
+		.a(a), 
+		.b(b), 
+		.sum(sum), 
+		.cout(cout)
+	);
+
+  // Waveform Generation for EDA Playground
+  initial begin
+    $dumpfile("ha.vcd");
+    $dumpvars(0, half_adder_tb);
+  end
+
+	initial begin
+		// Initialize Inputs
+		a = 0;
+		b = 0;
+	   $monitor($time,"a=%b,b=%b,sum=%b,cout=%b",a,b,sum,cout);
+		// Wait 100 ns for global reset to finish
+		#100; 
+    a=1'b1;
+		b=1'b1;
+
+    #50;
+    $finish;
+	end
+      
+endmodule
